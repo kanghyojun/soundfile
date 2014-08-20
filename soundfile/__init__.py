@@ -61,7 +61,6 @@ class CheapMP3(object):
         self.grow('frame_gains', self.max_frames)
         buffer_ = bytearray(12)
         while pos < self.file_len - 12:
-            #tmp = self.file.read(12 - offset)
             buffer_ = bytearray(self.file.read(12))
             buffer_offset = 0
             if len(buffer_) < 12:
@@ -76,10 +75,12 @@ class CheapMP3(object):
                     i += 1
                 pos += buffer_offset
                 offset = 12 - buffer_offset
+                big += 1
+                self.file.seek(int(pos))
                 continue
 
             mpg_version = 0
-            if buffer_[1] == 0xFA or buffer_[1] == 0xF9:
+            if buffer_[1] == 0xFA or buffer_[1] == 0xFB:
                 mpg_version = 1
             elif buffer_[1] == 0xF2 or buffer_[1] == 0xF3:
                 mpg_version = 2
@@ -150,7 +151,7 @@ class CheapMP3(object):
                 self.grow('frame_lens', size)
                 self.grow('frame_gains', size)
 
-            self.file.seek(pos + int(frame_len) - 12)
+            self.file.read(int(frame_len) - 12)
             pos += frame_len
             offset = 0
 
