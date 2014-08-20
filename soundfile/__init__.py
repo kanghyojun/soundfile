@@ -75,7 +75,6 @@ class CheapMP3(object):
                     i += 1
                 pos += buffer_offset
                 offset = 12 - buffer_offset
-                big += 1
                 self.file.seek(int(pos))
                 continue
 
