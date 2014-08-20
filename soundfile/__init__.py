@@ -8,7 +8,7 @@ from contextlib import contextmanager
 
 
 class CheapMP3(object):
-    """Implement :py:class:`com.ringdroid.soundfile.CheapMp3` in python.
+    """Implement :class:`com.ringdroid.soundfile.CheapMp3` in python.
     Use :py:func:`read` to read information of file.
 
     .. sourcecode:: python
